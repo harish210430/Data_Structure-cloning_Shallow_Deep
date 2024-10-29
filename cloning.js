@@ -188,28 +188,50 @@ let person = [
   
   // Your code goes here
   
-  let clonedPerson = [...person];
+//   let clonedPerson = [{...person[0]}, {...person[1]}, {...person[2]}, {input: {...person[3].input}, output: {...person[3].output}}];
+
+// OR
+  let clonedPerson = JSON.parse(JSON.stringify(person));
+
   console.log(clonedPerson);
+  console.log(person[0].input.name === clonedPerson[0].input.name);
   
-*/
+
 // 8. Write a function named cloneObject that accepts an object and returns the clone of the object
-
-function cloneObject(stdInfo) {
-    return {...stdInfo};
+*/
+function cloneObject(obj) {
+    return JSON.parse(JSON.stringify(obj));
   }
-
+  
   // Run the test below to check your function
-   
-  let stdInfo = {
-    name: "Sam bahadur",
-    age: 31,
-    // isAdult: age > 18 ? true: false,
-    friends: ["Mj. Ramachandra", "Mj. RamaSwami", "col. Rajiv Sinha"]
+  
+  let user = {
+    name: 'John',
+    house: 'Stark',
+    sisters: ['Arya', 'Sansa'],
   };
-
-//   cloned Obj.
-
-let newStdInfo = {
-    ...stdInfo, friends: [...stdInfo.friends]
-};
-console.log(cloneObject());
+  let cloned = cloneObject(user); 
+  
+  let person = {
+    firstName: 'John',
+    lastName: 'Doe',
+    address: {
+      street: 'North 1st',
+      city: 'San Jose',
+      state: 'CA',
+      country: 'USA',
+    },
+  };
+  
+  let clonedPerson = cloneObject(user);
+  
+  console.log(
+    `The user object is ${
+      user == cloned ? `not clone` : `cloned successfully 😁👑`
+    }`
+  );
+  console.log(
+    `The person object is ${
+      person == clonedPerson ? `not clone` : `cloned successfully 😁👑`
+    }`
+  );
